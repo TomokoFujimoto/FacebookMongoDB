@@ -1,0 +1,132 @@
+show dbs
+
+use Facebook
+
+db.createCollection("usuarios");
+
+db.usuarios.find().pretty()
+
+db.usuarios.insertMany([
+
+{nome:"Anthonella", sobrenome:"Guevara", senha:"3377049",
+cpf:"80287298298", idade:"18", email:"antvicval@gmail.com"},
+
+{nome:"Simon", sobrenome:"Guevara", senha:"11042008",
+cpf:"80287298289", idade:"17", email:"kakashisensei@gmail.com"},
+
+{nome:"Jose", sobrenome:"Guevara", senha:"14072014",
+cpf:"80287298299", idade:"19", email:"meliodas@gmail.com"},
+
+{nome:"Marsella", sobrenome:"La Rosa", senha:"5704320",
+cpf:"80287298297", idade:"58", email:"marsellita@gmail.com"},
+
+{nome:"Vidalia", sobrenome:"Arias", senha:"1277054",
+cpf:"80287298296", idade:"35", email:"vidamar@gmail.com"},
+
+])
+
+db.createCollection("amigos");
+
+db.amigos.insertMany([
+{cpf:"80287298298", amigos: [
+    {cpf: 80388288297, nome: "Sofia", sobrenome: "Centeno"}]},
+
+    {cpf: "80287298289", amigos: [
+    {cpf: 80388288298, nome: "Gabriela", sobrenome: "Fernandez"}]},
+
+    {cpf: "80287298299", amigos: [
+    {cpf: 80388288299, nome: "Liliana", sobrenome: "Borges"}]},
+
+    {cpf: "80287298297", amigos: [
+    {cpf: 80388288290, nome: "Valentina", sobrenome: "Coronado"}]},
+
+    {cpf: "80287298296", amigos: [
+    {cpf: 80388288291, nome: "Lucia", sobrenome: "Albornoz"}]}
+])
+
+db.createCollection("grupos");
+
+db.grupo.insertMany([
+    {nome: "Amigos Verdaderos", usuarios: [
+        {cpf: "70287298298"},
+        {cpf: "70287398297"},
+        {cpf: "70287298299"},
+        {cpf: "70287298290"},
+        {cpf: "70287298291"}]},
+
+    {nome: "Alunos Turma 13", usuarios: [
+        {cpf: "71287298298"},
+        {cpf: "71287398297"},
+        {cpf: "71287298299"},
+        {cpf: "71287298290"},
+        {cpf: "71287298291"}]},
+
+    {nome: "Jiujitsu Cardosense", usuarios: [
+        {cpf: "72287298298"},
+        {cpf: "72287398297"},
+        {cpf: "72287298299"},
+        {cpf: "72287298290"},
+        {cpf: "72287298291"}]},
+
+    {nome: "Violinistas Cardoso Moreira", usuarios: [
+        {cpf: "73287298298"},
+        {cpf: "73287398297"},
+        {cpf: "73287298299"},
+        {cpf: "73287298290"},
+        {cpf: "73287298291"}]},
+
+    {nome: "Futbol Maravilloso", usuarios: [
+        {cpf: "74287298298"},
+        {cpf: "74287398297"},
+        {cpf: "74287298299"},
+        {cpf: "74287298290"},
+        {cpf: "74287298291"}]}
+])
+
+db.createCollection("post");
+
+db.post.insertMany([
+    {tipo: "video", url: UUID(),
+    titulo: "O violino como parte de minha vida", Comentarios: [
+    {comentario: "Olha que lindo você tocando esse violino",
+    cpf: 80388288297}],
+    cpf: "80287298298", data_criacao: new Date("2021-10-25")},
+
+    {tipo: "video", url: UUID(),
+    titulo: "Kakashi Sensei", Comentarios: [
+    {comentario: "Você arrasou com esse desenho",
+    cpf: 80388288298}],
+    cpf: "80287298299", data_criacao: new Date("2021-10-27")},
+
+    {tipo: "text", url: UUID(),
+    titulo: "Batusai el destajador", Comentarios: [
+    {comentario: "Himura Kenji por sempre",
+    cpf: 80388288290}],
+    cpf: "80287298299", data_criacao: new Date("2021-10-27")},
+
+    {tipo: "video", url: UUID(),
+    titulo: "Shingueki no Kiojin", Comentarios: [
+    {comentario: "Capitan Levi Ackerman, amei, por sempre",
+    cpf: 80388288291}],
+    cpf: "80287298299", data_criacao: new Date("2021-10-28")},
+
+    {tipo: "video", url: UUID(),
+    titulo: "Mi vida sin la farofa", Comentarios: [
+    {comentario: "minha vida sem a farofa não tem sentido",
+    cpf: 80388288291}],
+    cpf: "80287298298", data_criacao: new Date("2021-10-29")}   
+])
+
+db.usuarios.find()//Consulta dados de minha collection usuario//
+db.amigos.find()//Consulta dados de minha collection amigos//
+db.grupo.find()//Consulta dados de minha collection grupo//
+db.post.find()//Consulta dados de minha collection post//
+
+db.usuarios.find({cpf: /296$/});//operacion de busqueda con final de cpf//
+
+db.usuarios.updateOne({"nome": "Anthonella"}
+{$set: {"nome": "Victoria"}});//update de nombe de usuario//
+
+db.usuarios.remove({"_id" : ObjectId("618005f83131ff8b232aa818")});//delet usuario Vidalia//
+
+db.amigos.drop()//Delet collection amigos//
